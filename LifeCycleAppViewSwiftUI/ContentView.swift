@@ -8,14 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    // Cada vista tiene su propio ciclo de vida
+    // onAppear
+    // onDisappear
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            ZStack {
+                Color.cyan.edgesIgnoringSafeArea(.all)
+                VStack {
+                    NavigationLink {
+                        SecondView()
+                    } label: {
+                        Text("Ir a la siguiente vista")
+                            .font(.largeTitle)
+                            .onAppear {
+                                print("---->> aparece la vista 1")
+                            }
+                            .onDisappear {
+                                print("---->> desaparece la vista 1")
+                            }
+                    }
+                }
+            }
+            .navigationTitle("Life cycle")
         }
-        .padding()
     }
 }
 
